@@ -10,7 +10,7 @@ from configs import dify_config
 from controllers.console.workspace.error import AccountNotInitializedError
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
-from models.account import AccountStatus
+from models.account import AccountStatus, TenantAccountJoin
 from models.dataset import RateLimitLog
 from models.model import DifySetup
 from services.feature_service import FeatureService, LicenseStatus
@@ -261,3 +261,27 @@ def is_allow_transfer_owner(view):
         abort(403)
 
     return decorated
+
+
+def workspace_owner_required(f):
+    """检查用户是否至少在一个 workspace 中是 owner"""
+
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+
+        # print(f"user={current_user}")
+        # # 检查用户是否是系统 setup 用户
+        # if current_user.is_setup:
+        #     return f(*args, **kwargs)
+
+        # 检查用户是否在任何 workspace 中是 owner
+        owner_join = db.session.query(TenantAccountJoin) \
+            .filter_by(account_id=current_user.id, role='owner') \
+            .first()
+
+        if not owner_join:
+            abort(403, description="Only workspace owners can perform this action")
+
+        return f(*args, **kwargs)
+
+    return decorated_function

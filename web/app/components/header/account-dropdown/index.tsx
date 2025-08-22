@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   RiAccountCircleLine,
+  RiAddLine, // 新增：创建空间图标
   RiArrowRightUpLine,
   RiBookOpenLine,
   RiGithubLine,
@@ -33,6 +34,7 @@ import { IS_CLOUD_EDITION } from '@/config'
 import cn from '@/utils/classnames'
 import { useGlobalPublicStore } from '@/context/global-public-context'
 import { useDocLink } from '@/context/i18n'
+import { createWorksapce } from '@/service/workspace'
 
 export default function AppSelector() {
   const itemClassName = `
@@ -41,6 +43,11 @@ export default function AppSelector() {
   `
   const router = useRouter()
   const [aboutVisible, setAboutVisible] = useState(false)
+  // 新增：创建工作空间的状态
+  const [createWorkspaceVisible, setCreateWorkspaceVisible] = useState(false)
+  const [newWorkspaceName, setNewWorkspaceName] = useState('')
+  const [isCreatingWorkspace, setIsCreatingWorkspace] = useState(false)
+
   const { systemFeatures } = useGlobalPublicStore()
 
   const { t } = useTranslation()
@@ -60,6 +67,33 @@ export default function AppSelector() {
     localStorage.removeItem('refresh_token')
 
     router.push('/signin')
+  }
+
+  // 新增：创建工作空间的处理函数
+  const handleCreateWorkspace = async () => {
+    if (!newWorkspaceName.trim()) {
+      console.error(t('common.userProfile.workspaceNameRequired'))
+      return
+    }
+
+    setIsCreatingWorkspace(true)
+    try {
+      const result = await createWorksapce({ name: newWorkspaceName.trim() })
+      console.log('create resp', result)
+      // 成功创建后的处理
+      console.info(t('common.userProfile.workspaceCreatedSuccess'))
+      setCreateWorkspaceVisible(false)
+      setNewWorkspaceName('')
+
+      // 刷新页面以更新工作空间列表
+      window.location.reload()
+    }
+    catch (error: any) {
+      console.error(t('common.userProfile.workspaceCreateFailed', { message: error.message }))
+    }
+    finally {
+      setIsCreatingWorkspace(false)
+    }
   }
 
   return (
@@ -117,6 +151,22 @@ export default function AppSelector() {
                         <RiArrowRightUpLine className='size-[14px] shrink-0 text-text-tertiary' />
                       </Link>
                     </MenuItem>
+
+                    {/* 新增：创建工作空间菜单项 - 只有 owner 才能看到 */}
+                    {isCurrentWorkspaceOwner && (
+                      <MenuItem>
+                        <div
+                          className={cn(itemClassName,
+                            'data-[active]:bg-state-base-hover',
+                          )}
+                          onClick={() => setCreateWorkspaceVisible(true)}
+                        >
+                          <RiAddLine className='size-4 shrink-0 text-text-tertiary' />
+                          <div className='system-md-regular grow px-1 text-text-secondary'>{t('common.userProfile.createWorkspace')}</div>
+                        </div>
+                      </MenuItem>
+                    )}
+
                     <MenuItem>
                       <div className={cn(itemClassName,
                         'data-[active]:bg-state-base-hover',
@@ -216,6 +266,44 @@ export default function AppSelector() {
           )
         }
       </Menu>
+
+      {/* 新增：创建工作空间的模态框 */}
+      {createWorkspaceVisible && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-xl p-6 w-96 max-w-md mx-4">
+            <h3 className="text-lg font-medium mb-4">{t('common.userProfile.createWorkspaceTitle')}</h3>
+            <input
+              type="text"
+              placeholder={t('common.userProfile.workspaceNamePlaceholder')}
+              value={newWorkspaceName}
+              onChange={e => setNewWorkspaceName(e.target.value)}
+              maxLength={50}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={isCreatingWorkspace}
+            />
+            <div className="flex gap-3 mt-6 justify-end">
+              <button
+                onClick={() => {
+                  setCreateWorkspaceVisible(false)
+                  setNewWorkspaceName('')
+                }}
+                disabled={isCreatingWorkspace}
+                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+              >
+                {t('common.userProfile.cancel')}
+              </button>
+              <button
+                onClick={handleCreateWorkspace}
+                disabled={isCreatingWorkspace || !newWorkspaceName.trim()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              >
+                {isCreatingWorkspace ? t('common.userProfile.creating') : t('common.userProfile.create')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {
         aboutVisible && <AccountAbout onCancel={() => setAboutVisible(false)} langGeniusVersionInfo={langGeniusVersionInfo} />
       }

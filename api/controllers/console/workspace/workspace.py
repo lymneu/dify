@@ -20,12 +20,12 @@ from controllers.console.error import AccountNotLinkTenantError
 from controllers.console.wraps import (
     account_initialization_required,
     cloud_edition_billing_resource_check,
-    setup_required,
+    setup_required, workspace_owner_required,
 )
 from extensions.ext_database import db
 from libs.helper import TimestampField
 from libs.login import login_required
-from models.account import Tenant, TenantStatus
+from models.account import Tenant, TenantStatus, Account, TenantAccountJoin
 from services.account_service import TenantService
 from services.feature_service import FeatureService
 from services.file_service import FileService
@@ -240,6 +240,81 @@ class WorkspaceInfoApi(Resource):
         return {"result": "success", "tenant": marshal(WorkspaceService.get_tenant_info(tenant), tenant_fields)}
 
 
+class CreateWorkspaceApi(Resource):
+    @setup_required
+    @login_required
+    @workspace_owner_required
+    @account_initialization_required
+    @cloud_edition_billing_resource_check("workspace_create")  # 如果需要计费检查
+    def post(self):
+        """创建新的 workspace（仅 owner 可用）"""
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True, location='json')
+        parser.add_argument('description', type=str, required=False, location='json')
+        args = parser.parse_args()
+
+        current_user_account = current_user
+
+        # 检查是否是系统级别的 owner（至少在一个 workspace 中是 owner）
+        if not self._is_system_level_owner(current_user_account):
+            return {'error': 'Only workspace owners can create new workspaces'}, 403
+
+        # 检查 workspace 创建权限
+        if not FeatureService.get_system_features().is_allow_create_workspace:
+            return {'error': 'Creating workspace is not allowed'}, 403
+
+        # 检查 workspace 数量限制
+        workspaces = FeatureService.get_system_features().license.workspaces
+        if not workspaces.is_available():
+            return {'error': 'Workspace limit exceeded'}, 400
+
+        # 检查用户已拥有的 workspace 数量（可选限制）
+        user_owned_count = self._get_user_owned_workspace_count(current_user_account)
+        if user_owned_count >= 10:  # 可配置的限制
+            return {'error': 'User workspace limit exceeded'}, 400
+
+        try:
+            # 创建新的 workspace
+            tenant = TenantService.create_tenant(
+                name=args['name'],
+                is_setup=False,
+                is_from_dashboard=True  # 标记为从控制台创建
+            )
+
+            # 将当前用户设置为新 workspace 的 owner
+            TenantService.create_tenant_member(tenant, current_user_account, role="owner")
+
+            # 可选：自动切换到新创建的 workspace
+            # TenantService.switch_tenant(current_user_account, tenant.id)
+
+            return {
+                'result': 'success',
+                'workspace': {
+                    'id': tenant.id,
+                    'name': tenant.name,
+                    'status': tenant.status,
+                    'created_at': tenant.created_at.isoformat(),
+                    'role': 'owner'
+                }
+            }, 201
+
+        except Exception as e:
+            return {'error': f'Failed to create workspace: {str(e)}'}, 500
+
+    def _is_system_level_owner(self, account: Account) -> bool:
+        """检查用户是否在任何 workspace 中是 owner"""
+        owner_join = db.session.query(TenantAccountJoin) \
+            .filter_by(account_id=account.id, role='owner') \
+            .first()
+        return owner_join is not None or account.is_setup
+
+    def _get_user_owned_workspace_count(self, account: Account) -> int:
+        """获取用户拥有的 workspace 数量"""
+        return db.session.query(TenantAccountJoin) \
+            .filter_by(account_id=account.id, role='owner') \
+            .count()
+
+
 api.add_resource(TenantListApi, "/workspaces")  # GET for getting all tenants
 api.add_resource(WorkspaceListApi, "/all-workspaces")  # GET for getting all tenants
 api.add_resource(TenantApi, "/workspaces/current", endpoint="workspaces_current")  # GET for getting current tenant info
@@ -248,3 +323,4 @@ api.add_resource(SwitchWorkspaceApi, "/workspaces/switch")  # POST for switching
 api.add_resource(CustomConfigWorkspaceApi, "/workspaces/custom-config")
 api.add_resource(WebappLogoWorkspaceApi, "/workspaces/custom-config/webapp-logo/upload")
 api.add_resource(WorkspaceInfoApi, "/workspaces/info")  # POST for changing workspace info
+api.add_resource(CreateWorkspaceApi, "/workspaces/create")
