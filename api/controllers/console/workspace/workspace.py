@@ -20,12 +20,13 @@ from controllers.console.error import AccountNotLinkTenantError
 from controllers.console.wraps import (
     account_initialization_required,
     cloud_edition_billing_resource_check,
-    setup_required, workspace_owner_required,
+    setup_required,
+    workspace_owner_required,
 )
 from extensions.ext_database import db
 from libs.helper import TimestampField
 from libs.login import login_required
-from models.account import Tenant, TenantStatus, Account, TenantAccountJoin
+from models.account import Account, Tenant, TenantAccountJoin, TenantStatus
 from services.account_service import TenantService
 from services.feature_service import FeatureService
 from services.file_service import FileService
@@ -306,7 +307,7 @@ class CreateWorkspaceApi(Resource):
         owner_join = db.session.query(TenantAccountJoin) \
             .filter_by(account_id=account.id, role='owner') \
             .first()
-        return owner_join is not None or account.is_setup
+        return owner_join is not None
 
     def _get_user_owned_workspace_count(self, account: Account) -> int:
         """获取用户拥有的 workspace 数量"""
