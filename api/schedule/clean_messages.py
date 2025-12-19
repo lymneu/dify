@@ -7,6 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 import app
 from configs import dify_config
+from enums.cloud_plan import CloudPlan
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
 from models.model import (
@@ -21,7 +22,7 @@ from models.model import (
 from models.web import SavedMessage
 from services.feature_service import FeatureService
 
-_logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 @app.celery.task(queue="dataset")
@@ -47,10 +48,9 @@ def clean_messages():
         if not messages:
             break
         for message in messages:
-            plan_sandbox_clean_message_day = message.created_at
             app = db.session.query(App).filter_by(id=message.app_id).first()
             if not app:
-                _logger.warning(
+                logger.warning(
                     "Expected App record to exist, but none was found, app_id=%s, message_id=%s",
                     message.app_id,
                     message.id,
@@ -64,7 +64,7 @@ def clean_messages():
                 plan = features.billing.subscription.plan
             else:
                 plan = plan_cache.decode()
-            if plan == "sandbox":
+            if plan == CloudPlan.SANDBOX:
                 # clean related message
                 db.session.query(MessageFeedback).where(MessageFeedback.message_id == message.id).delete(
                     synchronize_session=False

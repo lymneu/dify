@@ -9,7 +9,7 @@ import { AuthHeaderPrefix, AuthType, CollectionType } from '../types'
 import { basePath } from '@/utils/var'
 import type { Collection, CustomCollectionBackend, Tool, WorkflowToolProviderRequest, WorkflowToolProviderResponse } from '../types'
 import ToolItem from './tool-item'
-import cn from '@/utils/classnames'
+import { cn } from '@/utils/classnames'
 import I18n from '@/context/i18n'
 import { getLanguage } from '@/i18n-config/language'
 import Confirm from '@/app/components/base/confirm'
@@ -244,9 +244,8 @@ const ProviderDetail = ({
               <div className="flex h-5 items-center">
                 <Title title={collection.label[language]} />
               </div>
-              <div className='mb-1 flex h-4 items-center justify-between'>
+              <div className='mb-1 mt-0.5 flex h-4 items-center justify-between'>
                 <OrgInfo
-                  className="mt-0.5"
                   packageNameClassName='w-auto'
                   orgName={collection.author}
                   packageName={collection.name}

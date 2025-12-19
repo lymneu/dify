@@ -8,9 +8,8 @@ import type { MetadataType, SortType } from '../datasets'
 import { pauseDocIndexing, resumeDocIndexing } from '../datasets'
 import type { DocumentDetailResponse, DocumentListResponse, UpdateDocumentBatchParams } from '@/models/datasets'
 import { DocumentActionType } from '@/models/datasets'
-import type { CommonResponse, FileDownloadResponse } from '@/models/common'
-// Download document with authentication (sends Authorization header)
-import Toast from '@/app/components/base/toast'
+import type { CommonResponse } from '@/models/common'
+import { normalizeStatusForQuery } from '@/app/components/datasets/documents/status-filter'
 
 const NAME_SPACE = 'knowledge/document'
 
@@ -22,15 +21,26 @@ export const useDocumentList = (payload: {
     page: number
     limit: number
     sort?: SortType
+    status?: string
   },
   refetchInterval?: number | false
 }) => {
   const { query, datasetId, refetchInterval } = payload
-  const { keyword, page, limit, sort } = query
+  const { keyword, page, limit, sort, status } = query
+  const normalizedStatus = normalizeStatusForQuery(status)
+  const params: Record<string, number | string> = {
+    keyword,
+    page,
+    limit,
+  }
+  if (sort)
+    params.sort = sort
+  if (normalizedStatus && normalizedStatus !== 'all')
+    params.status = normalizedStatus
   return useQuery<DocumentListResponse>({
-    queryKey: [...useDocumentListKey, datasetId, keyword, page, limit, sort],
+    queryKey: [...useDocumentListKey, datasetId, keyword, page, limit, sort, normalizedStatus],
     queryFn: () => get<DocumentListResponse>(`/datasets/${datasetId}/documents`, {
-      params: query,
+      params,
     }),
     refetchInterval,
   })
@@ -97,21 +107,6 @@ export const useSyncDocument = () => {
   })
 }
 
-// Download document with authentication (sends Authorization header)
-export const useDocumentDownload = () => {
-  return useMutation({
-    mutationFn: async ({ datasetId, documentId }: { datasetId: string; documentId: string }) => {
-      // The get helper automatically adds the Authorization header from localStorage
-      return get<FileDownloadResponse>(`/datasets/${datasetId}/documents/${documentId}/upload-file`)
-    },
-    onError: (error: any) => {
-      // Show a toast notification if download fails
-      const message = error?.message || 'Download failed.'
-      Toast.notify({ type: 'error', message })
-    },
-  })
-}
-
 export const useSyncWebsite = () => {
   return useMutation({
     mutationFn: ({ datasetId, documentId }: UpdateDocumentBatchParams) => {
@@ -145,7 +140,7 @@ export const useDocumentMetadata = (payload: {
   })
 }
 
-export const useInvalidDocumentDetailKey = () => {
+export const useInvalidDocumentDetail = () => {
   return useInvalid(useDocumentDetailKey)
 }
 

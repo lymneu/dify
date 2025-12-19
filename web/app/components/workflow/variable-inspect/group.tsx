@@ -14,7 +14,7 @@ import BlockIcon from '@/app/components/workflow/block-icon'
 import type { currentVarType } from './panel'
 import { VarInInspectType } from '@/types/workflow'
 import type { NodeWithVar, VarInInspect } from '@/types/workflow'
-import cn from '@/utils/classnames'
+import { cn } from '@/utils/classnames'
 import { useToolIcon } from '../hooks'
 import { VariableIconWithColor } from '@/app/components/workflow/nodes/_base/components/variable/variable-label'
 
@@ -40,7 +40,7 @@ const Group = ({
   const { t } = useTranslation()
   const [isCollapsed, setIsCollapsed] = useState(false)
 
-  const toolIcon = useToolIcon(nodeData?.nodePayload as any)
+  const toolIcon = useToolIcon(nodeData?.nodePayload)
 
   const isEnv = varType === VarInInspectType.environment
   const isChatVar = varType === VarInInspectType.conversation

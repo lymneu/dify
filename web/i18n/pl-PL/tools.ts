@@ -2,7 +2,6 @@ const translation = {
   title: 'Narzędzia',
   createCustomTool: 'Utwórz niestandardowe narzędzie',
   type: {
-    all: 'Wszystkie',
     builtIn: 'Wbudowane',
     custom: 'Niestandardowe',
     workflow: 'Przepływ pracy',
@@ -21,7 +20,6 @@ const translation = {
       'Po skonfigurowaniu poświadczeń wszyscy członkowie w przestrzeni roboczej mogą używać tego narzędzia podczas projektowania aplikacji.',
   },
   includeToolNum: '{{num}} narzędzi zawarte',
-  addTool: 'Dodaj narzędzie',
   createTool: {
     title: 'Utwórz niestandardowe narzędzie',
     editAction: 'Konfiguruj',
@@ -102,6 +100,13 @@ const translation = {
     nameForToolCallPlaceHolder: 'Służy do rozpoznawania maszyn, takich jak getCurrentWeather, list_pets',
     confirmTip: 'Będzie to miało wpływ na aplikacje korzystające z tego narzędzia',
     confirmTitle: 'Potwierdź, aby zapisać ?',
+    toolOutput: {
+      title: 'Wynik narzędzia',
+      name: 'Nazwa',
+      reserved: 'Zarezerwowane',
+      reservedParameterDuplicateTip: 'text, json i pliki są zastrzeżonymi zmiennymi. Zmienne o tych nazwach nie mogą pojawiać się w schemacie wyjściowym.',
+      description: 'Opis',
+    },
   },
   test: {
     title: 'Test',
@@ -145,11 +150,9 @@ const translation = {
   notAuthorized: 'Narzędzie nieautoryzowane',
   howToGet: 'Jak uzyskać',
   addToolModal: {
-    manageInTools: 'Zarządzanie w Narzędziach',
     added: 'Dodane',
     type: 'typ',
     category: 'kategoria',
-    add: 'dodawać',
     custom: {
       title: 'Brak dostępnego narzędzia niestandardowego',
       tip: 'Utwórz narzędzie niestandardowe',
@@ -197,6 +200,23 @@ const translation = {
       confirm: 'Dodaj i autoryzuj',
       timeout: 'Limit czasu',
       sseReadTimeout: 'Przekroczenie czasu oczekiwania na odczyt SSE',
+      addHeader: 'Dodaj nagłówek',
+      headers: 'Nagłówki',
+      headerKeyPlaceholder: 'np. Autoryzacja',
+      timeoutPlaceholder: 'trzydzieści',
+      headerValuePlaceholder: 'np. Token dostępu 123',
+      headerKey: 'Nazwa nagłówka',
+      headersTip: 'Dodatkowe nagłówki HTTP do wysłania z żądaniami serwera MCP',
+      headerValue: 'Wartość nagłówka',
+      noHeaders: 'Brak skonfigurowanych nagłówków niestandardowych',
+      maskedHeadersTip: 'Wartości nagłówków są ukryte dla bezpieczeństwa. Zmiany zaktualizują rzeczywiste wartości.',
+      configurations: 'Konfiguracje',
+      authentication: 'Uwierzytelnianie',
+      clientSecretPlaceholder: 'Tajny klucz klienta',
+      clientSecret: 'Tajny klucz klienta',
+      useDynamicClientRegistration: 'Użyj dynamicznej rejestracji klienta',
+      clientID: 'ID klienta',
+      redirectUrlWarning: 'Proszę skonfigurować swój adres URL przekierowania OAuth na:',
     },
     delete: 'Usuń serwer MCP',
     deleteConfirmTitle: 'Usunąć {mcp}?',
@@ -237,7 +257,12 @@ const translation = {
       },
       publishTip: 'Aplikacja nieopublikowana. Najpierw opublikuj aplikację.',
     },
+    toolItem: {
+      parameters: 'Parametry',
+      noDescription: 'Brak opisu',
+    },
   },
+  allTools: 'Wszystkie narzędzia',
 }
 
 export default translation

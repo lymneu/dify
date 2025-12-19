@@ -30,7 +30,6 @@ const translation = {
       sync: 'Sincronizar',
       resume: 'Retomar',
       pause: 'Pausa',
-      download: 'Baixar arquivo',
     },
     index: {
       enable: 'Habilitar',
@@ -82,6 +81,10 @@ const translation = {
     },
     addUrl: 'Adicionar URL',
     learnMore: 'Saiba Mais',
+    sort: {
+      uploadTime: 'Hora do envio',
+      hitCount: 'Contagem de Recuperação',
+    },
   },
   metadata: {
     title: 'Metadados',
@@ -100,6 +103,9 @@ const translation = {
       upload_file: 'Enviar arquivo',
       notion: 'Sincronizar do Notion',
       github: 'Sincronizar do Github',
+      website_crawl: 'Rastreamento de sites',
+      local_file: 'Arquivo local',
+      online_document: 'Documento Online',
     },
     type: {
       book: 'Livro',
@@ -337,13 +343,13 @@ const translation = {
     hierarchical: 'Pai-filho',
     parentMaxTokens: 'Pai',
     childMaxTokens: 'Criança',
+    waiting: 'Aguarde a incorporação...',
   },
   segment: {
     paragraphs: 'Parágrafos',
     keywords: 'Palavras-chave',
     addKeyWord: 'Adicionar palavra-chave',
     keywordError: 'O comprimento máximo da palavra-chave é 20',
-    characters: 'caracteres',
     hitCount: 'Contagem de recuperação',
     vectorHash: 'Hash do vetor: ',
     questionPlaceholder: 'adicionar pergunta aqui',
@@ -395,6 +401,7 @@ const translation = {
     parentChunk: 'Pedaço pai',
     keywordEmpty: 'A palavra-chave não pode estar vazia',
     keywordDuplicate: 'A palavra-chave já existe',
+    allFilesUploaded: 'Todos os arquivos devem ser enviados antes de salvar',
   },
 }
 

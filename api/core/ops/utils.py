@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from datetime import datetime
-from typing import Optional, Union
+from typing import Union
 from urllib.parse import urlparse
 
 from sqlalchemy import select
@@ -49,9 +49,7 @@ def replace_text_with_content(data):
         return data
 
 
-def generate_dotted_order(
-    run_id: str, start_time: Union[str, datetime], parent_dotted_order: Optional[str] = None
-) -> str:
+def generate_dotted_order(run_id: str, start_time: Union[str, datetime], parent_dotted_order: str | None = None) -> str:
     """
     generate dotted_order for langsmith
     """
@@ -149,3 +147,14 @@ def validate_project_name(project: str, default_name: str) -> str:
         return default_name
 
     return project.strip()
+
+
+def validate_integer_id(id_str: str) -> str:
+    """
+    Validate and normalize integer ID
+    """
+    id_str = id_str.strip()
+    if not id_str.isdigit():
+        raise ValueError("ID must be a valid integer")
+
+    return id_str

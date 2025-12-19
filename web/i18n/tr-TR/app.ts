@@ -84,6 +84,7 @@ const translation = {
     noIdeaTip: 'Fikriniz yok mu? Şablonlarımıza göz atın',
     forAdvanced: 'İLERI DÜZEY KULLANICILAR IÇIN',
     dropDSLToCreateApp: 'Uygulama oluşturmak için DSL dosyasını buraya bırakın',
+    import: 'Ithalat',
   },
   editApp: 'Bilgileri Düzenle',
   editAppTitle: 'Uygulama Bilgilerini Düzenle',
@@ -152,6 +153,14 @@ const translation = {
       viewDocsLink: '{{key}} dökümanlarını görüntüle',
       removeConfirmTitle: '{{key}} yapılandırmasını kaldır?',
       removeConfirmContent: 'Mevcut yapılandırma kullanımda, kaldırılması İzleme özelliğini kapatacaktır.',
+      password: 'Parola',
+      clientId: 'OAuth İstemci Kimliği',
+      databricksHost: 'Databricks Çalışma Alanı URL\'si',
+      clientSecret: 'OAuth İstemci Sırrı',
+      username: 'Kullanıcı Adı',
+      experimentId: 'Deney Kimliği',
+      personalAccessToken: 'Kişisel Erişim Belirteci (eski)',
+      trackingUri: 'İzleme URI\'si',
     },
     view: 'Görünüm',
     opik: {
@@ -165,6 +174,18 @@ const translation = {
     aliyun: {
       title: 'Bulut İzleyici',
       description: 'Alibaba Cloud tarafından sağlanan tamamen yönetilen ve bakım gerektirmeyen gözlemleme platformu, Dify uygulamalarının kutudan çıkar çıkmaz izlenmesi, takip edilmesi ve değerlendirilmesine olanak tanır.',
+    },
+    mlflow: {
+      title: 'MLflow',
+      description: 'Deney takibi, gözlemlenebilirlik ve değerlendirme için açık kaynaklı LLMOps platformu, AI/LLM uygulamalarını güvenle oluşturmak için.',
+    },
+    databricks: {
+      title: 'Databricks',
+      description: 'Databricks, iz veri depolama için güçlü yönetişim ve güvenlik ile tamamen yönetilen MLflow sunar.',
+    },
+    tencent: {
+      title: 'Tencent APM',
+      description: 'Tencent Uygulama Performans İzleme, LLM uygulamaları için kapsamlı izleme ve çok boyutlu analiz sağlar.',
     },
   },
   answerIcon: {
@@ -271,6 +292,14 @@ const translation = {
       themeDarkDesc: 'Koyu görünümü kullan',
       themeCategoryDesc: 'Uygulama temasını değiştir',
       runDesc: 'Hızlı komutlar çalıştır (tema, dil, ...)',
+      searchPluginsDesc: 'Eklentilerinizi arayın ve gezinin',
+      slashDesc: '/tema, /dil gibi komutları çalıştırın',
+      communityDesc: 'Açık Discord topluluğu',
+      accountDesc: 'Hesap sayfasına gidin',
+      feedbackDesc: 'Açık topluluk geri bildirim tartışmaları',
+      docDesc: 'Yardım belgelerini aç',
+      zenTitle: 'Zen Mode',
+      zenDesc: 'Toggle canvas focus mode',
     },
     emptyState: {
       noAppsFound: 'Uygulama bulunamadı',
@@ -285,6 +314,7 @@ const translation = {
       plugins: 'Eklentiler',
       knowledgeBases: 'Bilgi Tabanları',
       workflowNodes: 'İş Akışı Düğümleri',
+      commands: 'Komutlar',
     },
     searchFailed: 'Arama başarısız oldu',
     clearToSearchAll: 'Tümünü aramak için @ işaretini kaldırın',
@@ -304,7 +334,14 @@ const translation = {
     inScope: '{{scope}}s içinde',
     tryDifferentSearch: 'Farklı bir arama terimi deneyin',
     noMatchingCommands: 'Eşleşen komut bulunamadı',
+    slashHint: 'Tüm mevcut komutları görmek için / yazın',
+    tips: 'Navigasyon için ↑↓ tuşlarına basın',
+    selectToNavigate: 'Gezinmek için seçin',
+    pressEscToClose: 'Kapatmak için ESC tuşuna basın',
+    startTyping: 'Arama yapmak için yazmaya başlayın',
   },
+  noUserInputNode: 'Eksik kullanıcı girdi düğümü',
+  notPublishedYet: 'Uygulama henüz yayımlanmadı',
 }
 
 export default translation

@@ -14,7 +14,7 @@ import type { SiteInfo } from '@/models/share'
 import { useThemeContext } from '@/app/components/base/chat/embedded-chatbot/theme/theme-context'
 import ActionButton from '@/app/components/base/action-button'
 import { basePath } from '@/utils/var'
-import cn from '@/utils/classnames'
+import { cn } from '@/utils/classnames'
 
 type Props = {
   siteInfo?: SiteInfo
@@ -40,12 +40,12 @@ const OPTION_MAP = {
       `<script>
  window.difyChatbotConfig = {
   token: '${token}'${isTestEnv
-        ? `,
+    ? `,
   isDev: true`
-        : ''}${IS_CE_EDITION
-          ? `,
+    : ''}${IS_CE_EDITION
+    ? `,
   baseUrl: '${url}${basePath}'`
-          : ''},
+    : ''},
   inputs: {
     // You can define the inputs from the Start node here
     // key is the variable name

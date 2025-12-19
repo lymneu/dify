@@ -88,6 +88,7 @@ const translation = {
     completionUserDescription: 'Быстро создайте помощника с искусственным интеллектом для задач генерации текста с простой настройкой.',
     workflowUserDescription: 'Визуально создавайте автономные ИИ-процессы простым перетаскиванием.',
     dropDSLToCreateApp: 'Перетащите файл DSL сюда, чтобы создать приложение',
+    import: 'Импорт',
   },
   editApp: 'Редактировать информацию',
   editAppTitle: 'Редактировать информацию о приложении',
@@ -157,6 +158,14 @@ const translation = {
       viewDocsLink: 'Посмотреть документацию {{key}}',
       removeConfirmTitle: 'Удалить конфигурацию {{key}}?',
       removeConfirmContent: 'Текущая конфигурация используется, ее удаление отключит функцию трассировки.',
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      experimentId: 'ID эксперимента',
+      trackingUri: 'URI отслеживания',
+      clientSecret: 'Секрет клиента OAuth',
+      databricksHost: 'URL рабочего пространства Databricks',
+      clientId: 'Идентификатор клиента OAuth',
+      personalAccessToken: 'Личный токен доступа (устаревший)',
     },
     opik: {
       title: 'Опик',
@@ -169,6 +178,18 @@ const translation = {
     aliyun: {
       title: 'Облачный монитор',
       description: 'Полностью управляемая и не требующая обслуживания платформа наблюдения, предоставляемая Alibaba Cloud, обеспечивает мониторинг, трассировку и оценку приложений Dify из коробки.',
+    },
+    mlflow: {
+      title: 'MLflow',
+      description: 'Платформа LLMOps с открытым исходным кодом для отслеживания экспериментов, наблюдаемости и оценки, для создания приложений AI/LLM с уверенностью.',
+    },
+    databricks: {
+      title: 'Databricks',
+      description: 'Databricks предлагает полностью управляемый MLflow с сильным управлением и безопасностью для хранения данных трассировки.',
+    },
+    tencent: {
+      title: 'Tencent APM',
+      description: 'Мониторинг производительности приложений Tencent предоставляет всестороннее отслеживание и многомерный анализ для приложений LLM.',
     },
   },
   answerIcon: {
@@ -276,6 +297,13 @@ const translation = {
       languageCategoryDesc: 'Переключите язык интерфейса',
       themeLightDesc: 'Используйте светлый внешний вид',
       themeSystemDesc: 'Следуйте внешнему виду вашей операционной системы',
+      slashDesc: 'Выполняйте команды, такие как /theme, /lang',
+      accountDesc: 'Перейдите на страницу учетной записи',
+      feedbackDesc: 'Обсуждения обратной связи с открытым сообществом',
+      docDesc: 'Откройте справочную документацию',
+      communityDesc: 'Открытое сообщество Discord',
+      zenTitle: 'Zen Mode',
+      zenDesc: 'Toggle canvas focus mode',
     },
     emptyState: {
       noPluginsFound: 'Плагины не найдены',
@@ -290,6 +318,7 @@ const translation = {
       plugins: 'Плагины',
       apps: 'Приложения',
       workflowNodes: 'Узлы рабочих процессов',
+      commands: 'Команды',
     },
     searching: 'Поиск...',
     noResults: 'Ничего не найдено',
@@ -309,7 +338,14 @@ const translation = {
     inScope: 'в {{scope}}s',
     noMatchingCommands: 'Соответствующие команды не найдены',
     tryDifferentSearch: 'Попробуйте использовать другой поисковый запрос',
+    slashHint: 'Введите / чтобы увидеть все доступные команды',
+    startTyping: 'Начните вводить для поиска',
+    tips: 'Нажмите ↑↓ для навигации',
+    selectToNavigate: 'Выберите для навигации',
+    pressEscToClose: 'Нажмите ESC для закрытия',
   },
+  notPublishedYet: 'Приложение ещё не опубликовано',
+  noUserInputNode: 'Отсутствует узел ввода пользователя',
 }
 
 export default translation

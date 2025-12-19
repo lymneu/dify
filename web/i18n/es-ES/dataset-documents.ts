@@ -31,7 +31,6 @@ const translation = {
       sync: 'Sincronizar',
       resume: 'Reanudar',
       pause: 'Pausa',
-      download: 'Descargar archivo',
     },
     index: {
       enable: 'Habilitar',
@@ -82,6 +81,10 @@ const translation = {
       ok: 'Aceptar',
     },
     learnMore: 'Aprende más',
+    sort: {
+      uploadTime: 'Hora de subida',
+      hitCount: 'Conteo de Recuperaciones',
+    },
   },
   metadata: {
     title: 'Metadatos',
@@ -100,6 +103,9 @@ const translation = {
       upload_file: 'Subir archivo',
       notion: 'Sincronizar desde Notion',
       github: 'Sincronizar desde GitHub',
+      online_document: 'Documento en línea',
+      local_file: 'Archivo local',
+      website_crawl: 'Rastreo del sitio web',
     },
     type: {
       book: 'Libro',
@@ -337,6 +343,7 @@ const translation = {
     childMaxTokens: 'Niño',
     hierarchical: 'Padre-hijo',
     parentMaxTokens: 'Padre',
+    waiting: 'Esperando incrustación...',
   },
   segment: {
     paragraphs: 'Párrafos',
@@ -394,6 +401,7 @@ const translation = {
     regenerationConfirmTitle: '¿Desea regenerar fragmentos secundarios?',
     keywordEmpty: 'La palabra clave no puede estar vacía',
     keywordDuplicate: 'La palabra clave ya existe',
+    allFilesUploaded: 'Todos los archivos deben subirse antes de guardar',
   },
 }
 

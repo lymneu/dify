@@ -77,6 +77,7 @@ const translation = {
     agentUserDescription: 'Ein intelligenter Agent, der in der Lage ist, iteratives Denken zu führen und autonome Werkzeuge zu verwenden, um Aufgabenziele zu erreichen.',
     agentShortDescription: 'Intelligenter Agent mit logischem Denken und autonomer Werkzeugnutzung',
     dropDSLToCreateApp: 'Ziehen Sie die DSL-Datei hierher, um die App zu erstellen',
+    import: 'Importieren',
   },
   editApp: 'App bearbeiten',
   editAppTitle: 'App-Informationen bearbeiten',
@@ -145,6 +146,14 @@ const translation = {
       viewDocsLink: '{{key}}-Dokumentation ansehen',
       removeConfirmTitle: '{{key}}-Konfiguration entfernen?',
       removeConfirmContent: 'Die aktuelle Konfiguration wird verwendet. Das Entfernen wird die Nachverfolgungsfunktion ausschalten.',
+      password: 'Passwort',
+      databricksHost: 'Databricks-Workspace-URL',
+      clientSecret: 'OAuth-Client-Geheimnis',
+      personalAccessToken: 'Persönliches Zugriffstoken (veraltet)',
+      experimentId: 'Experiment-ID',
+      username: 'Benutzername',
+      trackingUri: 'Tracking-URI',
+      clientId: 'OAuth-Client-ID',
     },
     view: 'Ansehen',
     opik: {
@@ -158,6 +167,18 @@ const translation = {
     aliyun: {
       title: 'Cloud-Monitor',
       description: 'Die vollständig verwaltete und wartungsfreie Observability-Plattform von Alibaba Cloud ermöglicht eine sofortige Überwachung, Verfolgung und Bewertung von Dify-Anwendungen.',
+    },
+    mlflow: {
+      title: 'MLflow',
+      description: 'Open-Source-LLMOps-Plattform mit Experiment-Tracking, Observability und Evaluierungen für die sichere Entwicklung von AI/LLM-Anwendungen.',
+    },
+    databricks: {
+      title: 'Databricks',
+      description: 'Databricks bietet vollständig verwaltetes MLflow mit starker Governance und Sicherheit für die Speicherung von Trace-Daten.',
+    },
+    tencent: {
+      title: 'Tencent APM',
+      description: 'Tencent Application Performance Monitoring bietet umfassendes Tracing und multidimensionale Analyse für LLM-Anwendungen.',
     },
   },
   answerIcon: {
@@ -278,6 +299,13 @@ const translation = {
       themeDarkDesc: 'Verwenden Sie das dunkle Erscheinungsbild',
       runDesc: 'Führen Sie schnelle Befehle aus (Thema, Sprache, ...)',
       themeCategoryTitle: 'Thema',
+      slashDesc: 'Führen Sie Befehle wie /theme, /lang aus',
+      accountDesc: 'Gehe zur Kontoseite',
+      feedbackDesc: 'Offene Diskussionen zum Feedback der Gemeinschaft',
+      communityDesc: 'Offene Discord-Community',
+      docDesc: 'Öffnen Sie die Hilfedokumentation',
+      zenTitle: 'Zen Mode',
+      zenDesc: 'Toggle canvas focus mode',
     },
     emptyState: {
       noPluginsFound: 'Keine Plugins gefunden',
@@ -292,6 +320,7 @@ const translation = {
       plugins: 'Plugins',
       apps: 'Apps',
       workflowNodes: 'Workflow-Knoten',
+      commands: 'Befehle',
     },
     clearToSearchAll: 'Löschen Sie @, um alle zu durchsuchen',
     searchTemporarilyUnavailable: 'Suche vorübergehend nicht verfügbar',
@@ -311,7 +340,14 @@ const translation = {
     inScope: 'in {{scope}}s',
     noMatchingCommands: 'Keine übereinstimmenden Befehle gefunden',
     tryDifferentSearch: 'Versuchen Sie es mit einem anderen Suchbegriff',
+    slashHint: 'Geben Sie / ein, um alle verfügbaren Befehle anzuzeigen.',
+    tips: 'Drücken Sie ↑↓, um zu navigieren',
+    pressEscToClose: 'Drücken Sie ESC, um zu schließen',
+    startTyping: 'Beginnen Sie mit der Eingabe, um zu suchen',
+    selectToNavigate: 'Auswählen, um zu navigieren',
   },
+  notPublishedYet: 'App ist noch nicht veröffentlicht',
+  noUserInputNode: 'Fehlender Benutzereingabeknoten',
 }
 
 export default translation

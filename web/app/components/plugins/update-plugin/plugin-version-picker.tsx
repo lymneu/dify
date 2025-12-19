@@ -14,7 +14,7 @@ import type {
 } from '@floating-ui/react'
 import { useVersionListOfPlugin } from '@/service/use-plugins'
 import useTimestamp from '@/hooks/use-timestamp'
-import cn from '@/utils/classnames'
+import { cn } from '@/utils/classnames'
 import { lt } from 'semver'
 
 type Props = {
@@ -88,7 +88,7 @@ const PluginVersionPicker: FC<Props> = ({
       </PortalToFollowElemTrigger>
 
       <PortalToFollowElemContent className='z-[1000]'>
-        <div className="relative w-[209px] rounded-xl border-[0.5px] border-components-panel-border bg-components-panel-bg-blur p-1 shadow-lg">
+        <div className="relative w-[209px] rounded-xl border-[0.5px] border-components-panel-border bg-components-panel-bg-blur p-1 shadow-lg backdrop-blur-sm">
           <div className='system-xs-medium-uppercase px-3 pb-0.5 pt-1 text-text-tertiary'>
             {t('plugin.detailPanel.switchVersion')}
           </div>

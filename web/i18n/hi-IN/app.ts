@@ -80,6 +80,7 @@ const translation = {
     noTemplateFoundTip: 'विभिन्न कीवर्ड का उपयोग करके खोजने का प्रयास करें।',
     workflowUserDescription: 'ड्रैग-एंड-ड्रॉप सरलता के साथ स्वायत्त AI वर्कफ़्लो का दृश्य निर्माण करें।',
     dropDSLToCreateApp: 'यहाँ DSL फ़ाइल ड्रॉप करें ताकि ऐप बनाया जा सके',
+    import: 'आयात',
   },
   editApp: 'जानकारी संपादित करें',
   editAppTitle: 'ऐप जानकारी संपादित करें',
@@ -148,6 +149,14 @@ const translation = {
       viewDocsLink: '{{key}} दस्तावेज़ देखें',
       removeConfirmTitle: '{{key}} कॉन्फ़िगरेशन हटाएं?',
       removeConfirmContent: 'वर्तमान कॉन्फ़िगरेशन उपयोग में है, इसे हटाने से ट्रेसिंग सुविधा बंद हो जाएगी।',
+      password: 'पासवर्ड',
+      clientId: 'OAuth क्लाइंट आईडी',
+      clientSecret: 'OAuth क्लाइंट सीक्रेट',
+      trackingUri: 'ट्रैकिंग यूआरआई',
+      username: 'उपयोगकर्ता नाम',
+      experimentId: 'प्रयोग आईडी',
+      databricksHost: 'डेटाब्रिक्स वर्कस्पेस यूआरएल',
+      personalAccessToken: 'व्यक्तिगत एक्सेस टोकन (पुराना)',
     },
     view: 'देखना',
     opik: {
@@ -161,6 +170,18 @@ const translation = {
     aliyun: {
       title: 'क्लाउड मॉनिटर',
       description: 'अलीबाबा क्लाउड द्वारा प्रदान की गई पूरी तरह से प्रबंधित और रखरखाव-मुक्त अवलोकन प्लेटफ़ॉर्म, Dify अनुप्रयोगों की स्वचालित निगरानी, ट्रेसिंग और मूल्यांकन का सक्षम बनाता है।',
+    },
+    mlflow: {
+      title: 'MLflow',
+      description: 'प्रयोग ट्रैकिंग, अवलोकनीयता और मूल्यांकन के लिए ओपन-सोर्स LLMOps प्लेटफ़ॉर्म, विश्वास के साथ AI/LLM ऐप्स बनाने के लिए।',
+    },
+    databricks: {
+      title: 'Databricks',
+      description: 'Databricks मजबूत शासन और सुरक्षा के साथ पूरी तरह से प्रबंधित MLflow प्रदान करता है, ट्रेस डेटा संग्रहीत करने के लिए।',
+    },
+    tencent: {
+      title: 'टेनसेंट एपीएम',
+      description: 'Tencent एप्लिकेशन परफॉर्मेंस मॉनिटरिंग LLM एप्लिकेशन के लिए व्यापक ट्रेसिंग और बहु-आयामी विश्लेषण प्रदान करता है।',
     },
   },
   answerIcon: {
@@ -276,6 +297,13 @@ const translation = {
       themeCategoryDesc: 'ऐप की थीम बदलें',
       themeSystemDesc: 'अपने ऑपरेटिंग सिस्टम की उपस्थिति का पालन करें',
       runDesc: 'त्वरित कमांड चलाएँ (थीम, भाषा, ...)',
+      slashDesc: 'कमांड्स चलाएं जैसे /theme, /lang',
+      accountDesc: 'खाता पृष्ठ पर जाएं',
+      docDesc: 'सहायता दस्तावेज़ खोलें',
+      communityDesc: 'ओपन डिस्कॉर्ड समुदाय',
+      feedbackDesc: 'खुले समुदाय की फीडबैक चर्चाएँ',
+      zenTitle: 'Zen Mode',
+      zenDesc: 'Toggle canvas focus mode',
     },
     emptyState: {
       noPluginsFound: 'कोई प्लगइन नहीं मिले',
@@ -290,6 +318,7 @@ const translation = {
       knowledgeBases: 'ज्ञान आधार',
       plugins: 'प्लगइन्स',
       workflowNodes: 'कार्यप्रवाह नोड्स',
+      commands: 'आदेश',
     },
     noResults: 'कोई परिणाम नहीं मिले',
     clearToSearchAll: 'साफ़ @ सभी खोजने के लिए',
@@ -309,7 +338,14 @@ const translation = {
     inScope: '{{scope}}s में',
     tryDifferentSearch: 'एक अलग खोज शब्द आजमाएँ',
     noMatchingCommands: 'कोई मिलती-जुलती कमांड्स नहीं मिलीं',
+    slashHint: 'सभी उपलब्ध कमांड देखने के लिए टाइप करें /',
+    pressEscToClose: 'बंद करने के लिए ESC दबाएं',
+    startTyping: 'खोजने के लिए टाइप करना शुरू करें',
+    selectToNavigate: 'नेविगेट करने के लिए चुनें',
+    tips: 'नेविगेट करने के लिए ↑↓ दबाएँ',
   },
+  noUserInputNode: 'उपयोगकर्ता इनपुट नोड गायब है',
+  notPublishedYet: 'ऐप अभी प्रकाशित नहीं हुआ है',
 }
 
 export default translation

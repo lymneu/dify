@@ -80,6 +80,7 @@ const translation = {
     workflowShortDescription: 'Agentowy przepływ dla inteligentnych automatyzacji',
     advancedUserDescription: 'Przepływ z dodatkowymi funkcjami pamięci i interfejsem chatbota.',
     dropDSLToCreateApp: 'Upuść plik DSL tutaj, aby utworzyć aplikację',
+    import: 'Import',
   },
   editApp: 'Edytuj informacje',
   editAppTitle: 'Edytuj informacje o aplikacji',
@@ -149,6 +150,14 @@ const translation = {
       viewDocsLink: 'Zobacz dokumentację {{key}}',
       removeConfirmTitle: 'Usunąć konfigurację {{key}}?',
       removeConfirmContent: 'Obecna konfiguracja jest w użyciu, jej usunięcie wyłączy funkcję Śledzenia.',
+      password: 'Hasło',
+      experimentId: 'ID eksperymentu',
+      username: 'Nazwa użytkownika',
+      trackingUri: 'Śledzenie URI',
+      clientId: 'ID klienta OAuth',
+      personalAccessToken: 'Osobisty token dostępu (stary)',
+      clientSecret: 'Sekretny klucz klienta OAuth',
+      databricksHost: 'Adres URL obszaru roboczego Databricks',
     },
     view: 'Widok',
     opik: {
@@ -162,6 +171,18 @@ const translation = {
     aliyun: {
       title: 'Monitor Chmury',
       description: 'W pełni zarządzana i wolna od konserwacji platforma obserwowalności oferowana przez Alibaba Cloud umożliwia gotowe monitorowanie, śledzenie i oceny aplikacji Dify.',
+    },
+    mlflow: {
+      title: 'MLflow',
+      description: 'Platforma LLMOps open source do śledzenia eksperymentów, obserwowalności i oceny, aby tworzyć aplikacje AI/LLM z pewnością.',
+    },
+    databricks: {
+      title: 'Databricks',
+      description: 'Databricks oferuje w pełni zarządzany MLflow z silną kontrolą i bezpieczeństwem do przechowywania danych śledzenia.',
+    },
+    tencent: {
+      title: 'Tencent APM',
+      description: 'Tencent Application Performance Monitoring zapewnia kompleksowe śledzenie i wielowymiarową analizę dla aplikacji LLM.',
     },
   },
   answerIcon: {
@@ -277,6 +298,13 @@ const translation = {
       languageChangeDesc: 'Zmień język interfejsu',
       themeSystemDesc: 'Podążaj za wyglądem swojego systemu operacyjnego',
       runDesc: 'Uruchom szybkie polecenia (motyw, język, ...)',
+      slashDesc: 'Wykonuj polecenia takie jak /theme, /lang',
+      communityDesc: 'Otwarta społeczność Discord',
+      docDesc: 'Otwórz dokumentację pomocy',
+      accountDesc: 'Przejdź do strony konta',
+      feedbackDesc: 'Otwarte dyskusje na temat opinii społeczności',
+      zenTitle: 'Zen Mode',
+      zenDesc: 'Toggle canvas focus mode',
     },
     emptyState: {
       noAppsFound: 'Nie znaleziono aplikacji',
@@ -291,6 +319,7 @@ const translation = {
       workflowNodes: 'Węzły przepływu pracy',
       knowledgeBases: 'Bazy wiedzy',
       plugins: 'Wtyczki',
+      commands: 'Polecenia',
     },
     useAtForSpecific: 'Użyj @ dla określonych typów',
     searchPlaceholder: 'Wyszukaj lub wpisz @ dla poleceń...',
@@ -310,7 +339,14 @@ const translation = {
     inScope: 'w {{scope}}s',
     noMatchingCommands: 'Nie znaleziono pasujących poleceń',
     tryDifferentSearch: 'Spróbuj użyć innego hasła',
+    slashHint: 'Wpisz / aby zobaczyć wszystkie dostępne polecenia',
+    selectToNavigate: 'Wybierz, aby nawigować',
+    tips: 'Naciśnij ↑↓, aby nawigować',
+    startTyping: 'Zacznij pisać, aby wyszukać',
+    pressEscToClose: 'Naciśnij ESC, aby zamknąć',
   },
+  notPublishedYet: 'Aplikacja nie została jeszcze opublikowana',
+  noUserInputNode: 'Brak węzła wejściowego użytkownika',
 }
 
 export default translation
